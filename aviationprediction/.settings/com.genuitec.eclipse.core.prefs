@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=WebRoot/javascript/jquery.js,WebRoot/editor/jsp/config.json,WebRoot/javascript/plug-ins/layerUi/mobile/layer.js,WebRoot/javascript/jquery-ui.min.js,WebRoot/editor/third-party/jquery-1.10.2.min.js,WebRoot/editor/jsp/controller.jsp,WebRoot/javascript/plug-ins/echarts.min.js,WebRoot/editor/third-party/highcharts/modules/map.js,WebRoot/javascript/jquery.min.js,WebRoot/editor/ueditor.all.min.js
+validator.Unchecked=

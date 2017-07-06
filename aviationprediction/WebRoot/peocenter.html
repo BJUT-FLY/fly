@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>民航机票代理市场可视化</title>
+<meta name="keywords"  content="设置关键词..." />
+<meta name="description" content="设置描述..." />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<link rel="icon" href="images/icon/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="javascript/jquery.js"></script>
+<script src="javascript/plug-ins/customScrollbar.min.js"></script>
+<script src="javascript/plug-ins/echarts.min.js"></script>
+<script src="javascript/plug-ins/layerUi/layer.js"></script>
+<script src="editor/ueditor.config.js"></script>
+<script src="editor/ueditor.all.js"></script>
+<script src="javascript/plug-ins/pagination.js"></script>
+<script src="javascript/public.js"></script>
+</head>
+<body>
+<div class="main-wrap">
+	<div class="side-nav">
+		<div class="side-logo">
+			<div class="logo">
+				<span class="logo-ico">
+					<i class="i-l-1"></i>
+					<i class="i-l-2"></i>
+					<i class="i-l-3"></i>
+				</span>
+				<strong>民航机票代理市场可视化</strong>
+			</div>
+		</div>
+		
+		<nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
+			<h2>
+				<a href="index.html" class="InitialPage"><i class="icon-dashboard"></i>系统简介</a>
+			</h2>
+			</h2>
+			<ul>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-columns"></i>代理人市场地位<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="zhouzhuan.html">资金周转力</a>
+						</dd>
+						<dd>
+							<a href="huoyuedu.html">活跃度</a>
+						</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-inbox"></i>售票统计<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="hangsta.html">航空公司</a>
+						</dd>
+						<dd>
+							<a href="daista.html">代理人</a>
+						</dd>
+					</dl>
+				</li>
+				
+			</ul>
+			
+		</nav>
+		
+	</div>
+	<div class="content-wrap">
+		<header class="top-hd">
+			<div class="hd-lt">
+				<a class="icon-reorder"></a>
+			</div>
+			<div class="hd-rt">
+				<ul>
+					<li>
+						<a href="peocenter.html" class="InitialPage"><i class="icon-user"></i>个人中心</a>
+					</li>
+					
+					<li>
+						<a href="javascript:void(0)" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
+					</li>
+				</ul>
+			</div>
+		</header>
+		<main class="main-cont content mCustomScrollbar">
+			<!--开始::内容-->
+			<div class="page-wrap">
+				<section class="page-hd">
+					<header>
+						<h2 class="title"><i class="icon-user"></i>个人信息</h2>
+					</header>
+					<hr>
+				</section>	
+				<div style="width: 80%;">			
+				<div class="form-group-col-2">
+					<div class="form-label">用户名：</div>
+					<div class="form-cont">
+						<input type="text" placeholder="用户名" class="form-control form-boxed" id="username">
+					</div>
+				</div>
+				<div class="form-group-col-2">
+					<div class="form-label">手机号码：</div>
+					<div class="form-cont">
+						<input type="tel" placeholder="手机号码" class="form-control form-boxed" style="width:300px;" id="telephone" >
+					</div>
+				</div>
+				<div class="form-group-col-2">
+					<div class="form-label">电子邮箱：</div>
+					<div class="form-cont">
+						<input type="email" placeholder="电子邮箱" class="form-control form-boxed" id="email">
+					</div>		
+				</div>
+				
+				<div class="form-group-col-2">
+					<div class="form-label">兴趣爱好：</div>
+					<div class="form-cont">
+						<label class="check-box">
+							<input type="checkbox"  name="hobby" value="读书"/>
+							<span>读书</span>
+						</label>
+						<label class="check-box">
+							<input type="checkbox" name="hobby" value="听音乐"/>
+							<span>听音乐</span>
+						</label>
+						<label class="check-box">
+							<input type="checkbox" name="hobby" value="羽毛球"/>
+							<span>羽毛球</span>
+						</label>
+						<label class="check-box">
+							<input type="checkbox" name="hobby" value="篮球"/>
+							<span>篮球</span>
+						</label>
+						<label class="check-box">
+							<input type="checkbox" name="hobby" value="足球"/>
+							<span>足球</span>
+						</label>
+					</div>
+				</div>
+				<div class="form-group-col-2">
+					<div class="form-label">性别：</div>
+					<div class="form-cont">
+						<label class="radio">
+							<input type="radio" name="sex" value="男"/>
+							<span>男</span>
+						</label>
+						<label class="radio">
+							<input type="radio" name="sex" value="女"/>
+							<span>女</span>
+						</label>
+					</div>
+				</div>
+				<div class="form-group-col-2">
+					<div class="form-label">备注：</div>
+					<div class="form-cont">
+						<textarea class="form-control form-boxed" id="info"></textarea>
+					</div>
+				</div>
+				<div class="form-group-col-2">
+					<div class="form-label"></div>
+				</div>
+				</div>
+			</div>
+			
+			
+			
+
+
+
+			<!--开始::结束-->
+		</main>
+		<footer class="btm-ft">
+			<p class="clear">
+				<span class="fl">©Copyright 2017 <a href="#"  target="_blank">北京工业大学信息学部（原软件学院）</a></span>
+			</p>
+		</footer>
+	</div>
+	<script type="text/javascript">
+	$(function(){ 
+		$.ajax({
+			type:"POST",
+			url:"userinfo.action",
+			dataType:"json",
+			contentType:"application/json",
+			data:null,
+			success:function(data){
+				var user = JSON.parse(data.data);
+				$("#username").val(user.username);
+				$("#telephone").val(user.telephone);
+				$("#email").val(user.email);
+				$("#info").val(user.info);
+				$("input:radio[value="+user.sex+"]").attr('checked','true');
+				var hobby=user.hobby;
+				var hobbyarray =[];
+				hobbyarray = hobby.split(",");
+				for(var i=0;i<hobbyarray.length;i++){
+					$("input:checkbox[value="+hobbyarray[i]+"]").attr('checked','true');
+				}
+		        $("input[name='hobby']:checked").each(function(){      
+		        	hobbyarray.push($(this).val());    
+		        });
+			}
+			
+		});
+	
+	}); 
+	</script>
+</div>
+</body>
+</html>

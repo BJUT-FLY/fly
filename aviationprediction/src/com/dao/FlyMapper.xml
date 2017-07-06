@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.FlyMapper" >
+  <select id="flyCount" resultType="int">
+  		 select count(distinct sale_nbr) from flycompany;
+  </select>
+  
+  <select id="flysaletotal" resultType="int">
+  		 select sum(cnt) from flycompany group by day_id order by day_id;
+  </select>
+  
+   <select id="dayCount" resultType="int">
+  		 select count(distinct day_id) from flycompany;
+  </select>
+  
+  <select id="flycompanyname" resultType="String">
+  		 select distinct sale_nbr from flycompany order by sale_nbr;
+  </select>
+  
+  <select id="flycompanysale" resultType="Integer">
+    select sum(cnt)  from flycompany where day_id>#{startday} and day_id &lt;=#{endweek} and sale_nbr=#{flyList} group by sale_nbr order by sale_nbr
+  </select>
+  
+</mapper>

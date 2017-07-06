@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.AgentMapper" >
+  <select id="agentCount" resultType="int">
+  		 select count(distinct sale_nbr) from agentsale;
+  </select>
+  
+  <select id="agentbuyCount" resultType="int">
+  		 select sum(cnt) from agentbuy group by day_id order by day_id;
+  </select>
+  
+  <select id="agentsaleCount" resultType="int">
+  		  select sum(cnt) from agentsale group by day_id order by day_id;
+  </select>
+  
+  <select id="dayCount" resultType="int">
+  		 select count(distinct day_id) from agentsale;
+  </select>
+  
+  <select id="agentName" resultType="String">
+  		 select distinct sale_nbr from agentsale order by sale_nbr;
+  </select>
+  
+  <select id="agentSale" resultType="Integer">
+    select sum(cnt)  from agentsale where day_id>#{startday} and day_id &lt;=#{endweek} and sale_nbr=#{agent}
+  </select>
+  
+  <select id="agentBuy" resultType="Integer">
+    select sum(cnt)  from agentbuy where day_id>#{startday} and day_id &lt;=#{endweek} and buy_nbr=#{agent}
+  </select>
+  
+   <select id="agentsaleMony" resultType="Float">
+    select  round  from agentsale where day_id=#{curday} and sale_nbr=#{agent}
+  </select>
+  
+  <select id="agentbuyMony" resultType="Float">
+    select  round  from agentbuy where day_id=#{curday} and buy_nbr=#{agent}
+  </select>
+
+    
+   <select id="agentsaleMonys" resultType="java.util.HashMap">
+    select day_id,round  from agentsale where day_id>=#{startday} and day_id &lt;=#{endday} and sale_nbr=#{agent}
+  </select>
+  
+  <select id="agentbuyMonys" resultType="java.util.HashMap">
+    select day_id,round  from agentbuy where day_id>=#{startday} and day_id &lt;=#{endday} and buy_nbr=#{agent}
+  </select>
+  
+  <select id="difDay" resultType="int">
+    select distinct day_id  from agentbuy where day_id>=#{startday} and day_id &lt;=#{endday} and buy_nbr=#{agent}
+  </select>
+  
+  <select id="agentsaleCountByDay" resultType="Integer">
+    select  cnt  from agentsale where day_id=#{curday} and sale_nbr=#{agent}
+  </select>
+  
+  <select id="agentbuyCountByDay" resultType="Integer">
+    select  cnt  from agentbuy where day_id=#{curday} and buy_nbr=#{agent}
+  </select>
+  
+  
+    <select id="agentsaleCounts" resultType="java.util.HashMap">
+    select day_id,cnt  from agentsale where day_id>=#{startday} and day_id &lt;=#{endday} and sale_nbr=#{agent}
+  </select>
+  
+  <select id="agentbuyCounts" resultType="java.util.HashMap">
+    select day_id,cnt  from agentbuy where day_id>=#{startday} and day_id &lt;=#{endday} and buy_nbr=#{agent}
+  </select>
+  
+</mapper>

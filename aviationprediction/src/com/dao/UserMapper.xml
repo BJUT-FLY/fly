@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserMapper" >
+  <insert id="registerUser" parameterType="com.pojo.User">
+  		<selectKey keyProperty="uid" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into myuser(username,upassword,email,telephone,hobby,sex,info) values (#{username},#{upassword},#{email},#{telephone},#{hobby},#{sex},#{info})
+	</insert>
+	
+	<select id="loginUser" parameterType="com.pojo.User" resultType="int">
+			select count(*) from myuser where username=#{username} and upassword=#{upassword}
+	</select>
+	
+	<select id="userInfo" parameterType="String" resultType="com.pojo.User">
+			select * from myuser where username=#{username}
+	</select>
+</mapper>

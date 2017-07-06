@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>民航机票代理市场可视化</title>
+<meta name="keywords"  content="设置关键词..." />
+<meta name="description" content="设置描述..." />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<link rel="icon" href="images/icon/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="javascript/jquery.js"></script>
+<script src="javascript/plug-ins/customScrollbar.min.js"></script>
+<script src="javascript/plug-ins/echarts.min.js"></script>
+<script src="javascript/plug-ins/layerUi/layer.js"></script>
+<script src="editor/ueditor.config.js"></script>
+<script src="editor/ueditor.all.js"></script>
+<script src="javascript/plug-ins/pagination.js"></script>
+<script src="javascript/public.js"></script>
+</head>
+<body>
+<div class="main-wrap">
+	<div class="side-nav">
+		<div class="side-logo">
+			<div class="logo">
+				<span class="logo-ico">
+					<i class="i-l-1"></i>
+					<i class="i-l-2"></i>
+					<i class="i-l-3"></i>
+				</span>
+				<strong>民航机票代理市场可视化</strong>
+			</div>
+		</div>
+		
+		<nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
+			<h2>
+				<a href="index.html" class="InitialPage"><i class="icon-dashboard"></i>系统简介</a>
+			</h2>
+			</h2>
+			<ul>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-columns"></i>代理人市场地位<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="zhouzhuan.html">资金周转力</a>
+						</dd>
+						<dd>
+							<a href="huoyuedu.html">活跃度</a>
+						</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>
+							<i class="icon-inbox"></i>售票统计<i class="icon-angle-right"></i>
+						</dt>
+						<dd>
+							<a href="hangsta.html">航空公司</a>
+						</dd>
+						<dd>
+							<a href="daista.html">代理人</a>
+						</dd>
+					</dl>
+				</li>
+				
+			</ul>
+			
+		</nav>
+		
+	</div>
+	<div class="content-wrap">
+		<header class="top-hd">
+			<div class="hd-lt">
+				<a class="icon-reorder"></a>
+			</div>
+			<div class="hd-rt">
+				<ul>
+					<li>
+						<span><i class="icon-user"></i>航空公司:<span id="flycount">0</span></span>
+					</li>
+					<li>
+						<i class="icon-user"></i>代理人:<span id="agentcount">0</span>
+					</li>
+					<li>
+						<a href="peocenter.html" class="InitialPage"><i class="icon-user"></i>个人中心</a>
+					</li>
+					
+					<li>
+						<a href="javascript:void(0)" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
+					</li>
+				</ul>
+			</div>
+		</header>
+		<main class="main-cont content mCustomScrollbar">
+			<!--开始::内容-->
+			<div class="page-wrap">
+				<section class="page-hd">
+					<header>
+						<h2 class="title"><i class="icon-home"></i>民航机票代理市场可视化系统</h2>
+						<p class="title-description">
+							通过统计日常民航公司、代理人以及旅客购售票情况，我们可以对它进行可视化的展示和精确的预测。
+						</p>
+					</header>
+					<hr>
+				</section>
+				<blockquote class="blockquote mb-20">
+					<p class="text-success">分析机票购售的统计数据，对机票代理市场建模。进而刻画机票代理画像——设计指标评估代理人在全市场和各航空公司的市场地位。应用大数据技术对市场的演化作出预测，如代理人的市场地位升降等，以此可指导航空公司的销售策略或帮助行业管理部门进行行业管理决策。</p>
+					
+				</blockquote>
+				<div id="container" style="width: 90%; height: 500px; margin: 0 auto"></div>
+	
+			</div>
+			
+
+
+			<!--开始::结束-->
+		</main>
+		<footer class="btm-ft">
+			<p class="clear">
+				<span class="fl">©Copyright 2017 <a href="#"  target="_blank">北京工业大学信息学部（原软件学院）</a></span>
+			</p>
+		</footer>
+	</div>
+</div>
+
+<script type="text/javascript" src="javascript/jquery.js"></script>
+<script type="text/javascript" src="javascript/highcharts.js"></script>
+<!--[if IE]>
+			<script type="text/javascript" src="javascript/excanvas.compiled.js"></script>
+		<![endif]-->
+<script type="text/javascript">
+
+		var chart;
+		$(document).ready(function() {
+			
+			$.ajax({
+				type:"POST",
+				url:"index.action",
+				dataType:"json",
+				contentType:"application/json",
+				data:null,
+				success:function(data){
+					if(data.state=="success"){
+						
+						var day=new Array();
+						for(var i=0;i<91;i++){
+							day[i]=i+1;
+						}
+						var count = JSON.parse(data.data);
+						
+						$("#flycount").text(count.flycount);
+						$("#agentcount").text(count.agentcount); 
+						
+						chart = new Highcharts.Chart({
+							chart: {
+								renderTo: 'container',
+								defaultSeriesType: 'line',
+								margin: [50, 150, 60, 80]
+							},
+							title: {
+								text: '机票每日的销售情况折线图',
+								style: {
+									margin: '10px 100px 5px 10px' // center it
+								}
+							},
+							// subtitle: {
+							// 	text: 'Source: Beijing University of Technology',
+							// 	style: {
+							// 		margin: '0 100px 10px 10px' // center it
+							// 	}
+							// },
+							xAxis: {
+								categories:day,
+								title: {
+									text: 'Month'
+								}
+							},
+							yAxis: {
+								title: {
+									text: '票量 (张)'
+								},
+								plotLines: [{
+									value: 0,
+									width: 1,
+									color: '#808080'
+								}]
+							},
+							tooltip: {
+								formatter: function() {
+						                return '<b>'+ this.series.name +'</b><br/>'+
+										this.x +': '+ this.y +'张';
+								}
+							},
+							legend: {
+								layout: 'vertical',
+								style: {
+									left: 'auto',
+									bottom: 'auto',
+									right: '0px',
+									top: '100px'
+								}
+							},
+							series: [{
+								name: '航空公司售出票量',
+								data: count.flysaletotal
+							}, {
+								name: '代理人购买票量',
+								data: count.agentbuycount
+							}, {
+								name: '代理人售出票量',
+								data: count.agentsalecount
+							}, {
+								name: '旅客购买票量',
+								data: count.buytotal
+							}]
+						});
+					
+					
+					
+					}
+					
+				}
+				
+			});
+			
+			
+			
+			
+		});
+</script>
+
+</body>
+</html>
